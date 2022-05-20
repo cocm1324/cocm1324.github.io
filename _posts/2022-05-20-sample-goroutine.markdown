@@ -10,7 +10,7 @@ I'm planning to implement [system-view](https://github.com/cocm1324/system-view)
 Before jump right into project, I have to be get used to goroutine. So I started a [sample project](https://github.com/cocm1324/sample-goroutine).
 
 ## Goroutine? (skip if you know what goroutine is)
-```
+```go
 go func() {
     log.Printf("other goroutine\n")
 }()
@@ -19,7 +19,7 @@ log.Printf("main goroutine\n")
 ```
 Goroutine is kind of concurrent feature similar to threads (but not the same thing). In the middle of the Go code, use keyword 'go' to start goroutine.  
 
-```
+```go
 // blocking channel example. 
 // main goroutine waits for channel c to be input from nested goroutine.
 c := make(chan bool)
@@ -59,16 +59,12 @@ close(c)
 
 Channel usually blocks output side, which is blocking channel. However, there is a technique called non-blocking channle. By using 'select' in the loop, it will execute codes in default until channel inputs.
 
+Using goroutine and channels, I will implement some kind of worker simulation.
 
 
+## Worker Simulation  
 
-## What to Make  
+I will implement a simple simulation of workers. There will be many workers and a pool to manage workers. Workers will do task that takes some time (maybe 1 or 2 seconds). After work is done, pool will be informed of it.
 
-Af first, I thought of these
-- Task struct represents latency task (i.e it takes some time to complete, maybe 1~2 seconds) 
-    - Start() to start goroutine of this task
-    - Kill() to stop this goroutine in the middle of execution
-    - If task is completed, it signals to Pool struct of its completion.
-- Pool struct represents 
-    - same as task, Start() and Kill()
-    - 
+Also there will be a kill switch to pool that kills pool goroutine and all the related workers that started from that pool. This is because the purpose of this sample project is to practice use case of system view before implementing it, and system view includes some case that manually or situation dependantly kills services.
+
