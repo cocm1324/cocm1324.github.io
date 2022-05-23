@@ -4,12 +4,19 @@ title:  "Get to Know How Goroutine Works"
 date:   2022-05-20 14:00:00 +0900
 categories: project
 ---
+> TL; DR
+> - utilized goroutine to implement worker-pool simulation
+> - use context to control terminations of goroutine    
+> 
+> 
+
+![normal](/assets/images/normal-case.png)  
 
 I'm planning to implement [system-view](https://github.com/cocm1324/system-view) with Go. Main point of this project is to simulate variouse system component such as server, cache, loadbalancer, etc. Since I decided to use Go here, it seems using goroutine for each component would do.
 
 Before jump right into project, I have to be get used to goroutine. So I started a [sample project](https://github.com/cocm1324/sample-goroutine).
 
-## Goroutine? (skip if you know what goroutine is)
+## Goroutine? 
 ```go
 go func() {
     log.Printf("other goroutine\n")

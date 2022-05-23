@@ -4,3 +4,58 @@ title:  "[HGT] FTT Price Prediction"
 date:   2022-05-17 17:00:00 +0900
 categories: [project, talenthandongdev]
 ---
+> ### TL; DR
+> - Implemented FTT Price model for HGT(Handong Global University alumni investment group  
+> - Used REST API to get data from FTX, analyzed data with pregression, delivered as web service using HTML/CSS/JS, and CD(continuous deployment) with Github Action  
+![result](/assets/images/pricemodelss.png)
+
+FTT Price model is HGT project of automat
+
+
+
+## Background
+
+### What is FTT? How it works?
+
+As an investment group, HGT has couple frameworks that predict some financial indexes. FTT price model is one of them.
+
+FTT is a crypto currency that issued by FTX exchange. Unlike other crypto currencies such as Bitcoin, FTT is created by staking, and terminated with burning.
+
+Burning is simillar to stock buy-backs. Some companies buy their stocks from market to reduce circulation amount which leads to harden stocks fundamental price. Same for burns, FTX buys and terminate certain amount of FTT, restricting its circulation amount. Furthermore, companies buy-back their stocks iregullarly, but FTX does it regularly; burning is one of business rule of FTT.
+
+HGT's FTT price model is based upon this assumation; the fundamental price of FTT is related to the amount of USD that FTX pays to burn FTT.
+
+HGT decided to track all FTT burn amount(USD) and FTT historical price to model the relation between them. This is how we done it before this project.  
+- There is an excel file
+- Once a week, someone visit FTX and copy the burnd amount(USD), visit Coin Market Cap and copy current price
+- paste to add burnd amount, and price data of that week
+- using historical data of (burnd amount, price) do polynomial regression to update model using MicroSoft Excel's prediction chart feature.
+- upload updated excel file to messenger
+
+![excel](/assets/images/ftt-model-excel.png)
+
+Above figure is the result of the steps. These steps were done manually. Since it is trivial and tiresome jobs, no one wanted to do it.
+
+I thought it could be easily automated and could be provided as web services rather than sharing excel files.
+
+## Architecture and Processes
+
+![arch](/assets/images/ftt-model-arch.png)
+I started from drawing service architecture and processes. It will be a simple server-client kind of service, and only have 2 processes
+
+### Components
+- Client: a simple HTML/CSS/JS that runs on browser
+- Server: do processes
+- DB: Holds persistent data
+- FTX, CoinMarketCap: external data sources
+
+### Processes
+
+## Implementing
+
+TBD
+
+## Result and Conclusion
+
+TBD
+
