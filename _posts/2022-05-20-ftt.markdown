@@ -5,11 +5,11 @@ date:   2022-05-17 17:00:00 +0900
 categories: [project, talenthandongdev]
 ---
 > ### TL; DR
+>
 > - Implemented FTT Price model for HGT(Handong Global University alumni investment group  
 > - Used REST API to get data from FTX, analyzed data with pregression, delivered as web service using HTML/CSS/JS, and CD(continuous deployment) with Github Action  
-![result](/assets/images/pricemodelss.png)
-
-FTT Price model is HGT project of automat
+>  
+>![result](/assets/images/pricemodelss.png)
 
 
 
@@ -50,6 +50,15 @@ I started from drawing service architecture and processes. It will be a simple s
 - FTX, CoinMarketCap: external data sources
 
 ### Processes
+- Fetch Data(Pink Lines)
+    1. In server, scheduler will start process.
+    2. Call FTX, CMC API to get data from it. 
+    3. Parse Data, calculate price model
+    4. Save it to database
+- User Access(Orange Lines)
+    1. User access API
+    2. Get or modify data
+    3. Return the result to user
 
 ## Implementing
 
